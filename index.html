@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras de Electrónica</title>
+</head>
+<body>
+    <!--esta cabecera presenta el título, una descripción y una navegación
+    rápida a las distintas calculadoras de la página-->
+    <header>
+        <div class="container">
+            <h1>Calculadoras para resolver problemas de electrónica.</h1>
+            <p>Calculadoras para resolver problemas de electrónica.</p>
+            <nav>
+                <ul>
+                    <!--links a las diferentes calculadoras dentro de la pagina-->
+                    <li><a href="#ohm-section">Ley de Ohm</a></li>
+                    <li><a href="#pouillet-section">Ley de Pouillet</a></li>
+                    <li><a href="#color-code-section">Código de colores</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!--Sección de la ley de Ohm-->
+        <section id="ohm-section">
+            <div class="container">
+                <div class="calculator-card">
+                    <header class="card-header">
+                        <h2>Calculadora de la Ley de Ohm</h2>
+                        <p>V = I × R | I = V / R | R = V / I</p>
+                    </header>
+                    
+                    <div class="calculator-content">
+                        <!-- Selector de Cálculo -->
+                        <div class="calculation-selector">
+                            <h3>¿Qué deseas calcular?</h3>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="ohm-calc" value="voltage" checked>
+                                    <span>Voltaje (V)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="ohm-calc" value="current">
+                                    <span>Corriente (I)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="ohm-calc" value="resistance">
+                                    <span>Resistencia (R)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- inputs para que el ususrario ingrese los voltajes -->
+                        <div id="voltage-inputs" class="input-group">
+                            <h4>Calcular Voltaje (V = I × R)</h4>
+                            <div class="input-row">
+                                <label for="current-v">Corriente (I):</label>
+                                <input type="number" id="current-v" step="any" min="0">
+                                <select id="current-v-unit">
+                                    <option value="A">A (Amperios)</option>
+                                    <option value="mA">mA (Miliamperios)</option>
+                                    <option value="μA">μA (Microamperios)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="resistance-v">Resistencia (R):</label>
+                                <input type="number" id="resistance-v" step="any" min="0">
+                                <select id="resistance-v-unit">
+                                    <option value="Ω">Ω (Ohmios)</option>
+                                    <option value="kΩ">kΩ (Kiloohmios)</option>
+                                    <option value="MΩ">MΩ (Megaohmios)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- inputs para que el ususrario ingrese las crrients -->
+                        <div id="current-inputs" class="input-group" style="display: none;">
+                            <h4>Calcular Corriente (I = V / R)</h4>
+                            <div class="input-row">
+                                <label for="voltage-i">Voltaje (V):</label>
+                                <input type="number" id="voltage-i" step="any" min="0">
+                                <select id="voltage-i-unit">
+                                    <option value="V">V (Voltios)</option>
+                                    <option value="mV">mV (Milivoltios)</option>
+                                    <option value="kV">kV (Kilovoltios)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="resistance-i">Resistencia (R):</label>
+                                <input type="number" id="resistance-i" step="any" min="0">
+                                <select id="resistance-i-unit">
+                                    <option value="Ω">Ω (Ohmios)</option>
+                                    <option value="kΩ">kΩ (Kiloohmios)</option>
+                                    <option value="MΩ">MΩ (Megaohmios)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- inputs para que el ususrario ingrese las resistencias -->
+                        <div id="resistance-inputs" class="input-group" style="display: none;">
+                            <h4>Calcular Resistencia (R = V / I)</h4>
+                            <div class="input-row">
+                                <label for="voltage-r">Voltaje (V):</label>
+                                <input type="number" id="voltage-r" step="any" min="0">
+                                <select id="voltage-r-unit">
+                                    <option value="V">V (Voltios)</option>
+                                    <option value="mV">mV (Milivoltios)</option>
+                                    <option value="kV">kV (Kilovoltios)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="current-r">Corriente (I):</label>
+                                <input type="number" id="current-r" step="any" min="0">
+                                <select id="current-r-unit">
+                                    <option value="A">A (Amperios)</option>
+                                    <option value="mA">mA (Miliamperios)</option>
+                                    <option value="μA">μA (Microamperios)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- botones -->
+                        <div class="button-group">
+                            <button type="button" id="calculate-ohm">Calcular</button>
+                            <button type="button" id="clear-ohm">Limpiar</button>
+                        </div>
+
+                        <!-- resultados -->
+                        <div id="ohm-results" class="results">
+                            <h4>Resultado:</h4>
+                            <div class="result-display">
+                                <span id="ohm-result-value">--</span>
+                            </div>
+                            <div class="formula-display">
+                                <span id="ohm-formula">Selecciona un cálculo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Sección de la ley de Pouillet-->
+        <section id="pouillet-section">
+            <div class="container">
+                <div class="calculator-card">
+                    <header class="card-header">
+                        <h2>Calculadora de la Ley de Pouillet</h2>
+                        <p>P = ρ × (L/A) - Resistencia de conductores</p>
+                    </header>
+
+                    <div class="calculator-content">
+                        <!--formula principal de la ley de pouillet-->
+                        <div class="formula-section">
+                            <h3>Ley de Pouillet</h3>
+                            <div class="main-formula">
+                                <p><strong>R = ρ × (L/A)</strong></p>
+                                <p>Donde:</p>
+                                <ul>
+                                    <li><strong>R</strong> = Resistencia (Ω)</li>
+                                    <li><strong>ρ</strong> = Resistividad del material (Ω⋅m)</li>
+                                    <li><strong>L</strong> = Longitud del conductor (m)</li>
+                                    <li><strong>A</strong> = Área de la sección transversal (m²)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--selector de calculo-->
+                        <div class="calculation-selector">
+                            <h3>¿Qué deseas calcular?</h3>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="pouillet-calc" value="resistance" checked>
+                                    <span>Resistencia (R)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="pouillet-calc" value="resistivity">
+                                    <span>Resistividad (ρ)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="pouillet-calc" value="length">
+                                    <span>Longitud (L)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="pouillet-calc" value="area">
+                                    <span>Área (A)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--tabla de la resistividad de los metales-->
+                        <div class="resistivity-table">
+                            <h3>Resistividad de Materiales Comunes (20°C)</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Resistividad (Ω⋅m)</th>
+                                        <th>Tipo</th>
+                                        <th>Usar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Plata</td>
+                                        <td>1.59 × 10⁻⁸</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="1.59e-8">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cobre</td>
+                                        <td>1.68 × 10⁻⁸</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="1.68e-8">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oro</td>
+                                        <td>2.44 × 10⁻⁸</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="2.44e-8">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aluminio</td>
+                                        <td>2.82 × 10⁻⁸</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="2.82e-8">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hierro</td>
+                                        <td>9.71 × 10⁻⁸</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="9.71e-8">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Acero</td>
+                                        <td>1.43 × 10⁻⁷</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="1.43e-7">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Plomo</td>
+                                        <td>2.20 × 10⁻⁷</td>
+                                        <td>Conductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="2.20e-7">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nicromo</td>
+                                        <td>1.10 × 10⁻⁶</td>
+                                        <td>Aleación</td>
+                                        <td><button type="button" class="use-material" data-resistivity="1.10e-6">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carbono</td>
+                                        <td>3.50 × 10⁻⁵</td>
+                                        <td>Semiconductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="3.50e-5">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Germanio</td>
+                                        <td>4.60 × 10⁻¹</td>
+                                        <td>Semiconductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="4.60e-1">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silicio</td>
+                                        <td>6.40 × 10²</td>
+                                        <td>Semiconductor</td>
+                                        <td><button type="button" class="use-material" data-resistivity="6.40e2">Usar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vidrio</td>
+                                        <td>1.00 × 10¹²</td>
+                                        <td>Aislante</td>
+                                        <td><button type="button" class="use-material" data-resistivity="1.00e12">Usar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--inputs para la resistencia-->
+                        <div id="resistance-inputs-p" class="input-group">
+                            <h4>Calcular Resistencia (R = ρ × L / A)</h4>
+                            <div class="input-row">
+                                <label for="resistivity-r">Resistividad (ρ):</label>
+                                <input type="number" id="resistivity-r" step="any" min="0">
+                                <span class="unit">Ω⋅m</span>
+                                <div class="tooltip">Resistividad específica del material</div>
+                            </div>
+                            <div class="input-row">
+                                <label for="length-r">Longitud (L):</label>
+                                <input type="number" id="length-r" step="any" min="0">
+                                <select id="length-r-unit">
+                                    <option value="m">m (metros)</option>
+                                    <option value="cm">cm (centímetros)</option>
+                                    <option value="mm">mm (milímetros)</option>
+                                    <option value="km">km (kilómetros)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="area-r">Área (A):</label>
+                                <input type="number" id="area-r" step="any" min="0">
+                                <select id="area-r-unit">
+                                    <option value="m2">m² (metros cuadrados)</option>
+                                    <option value="cm2">cm² (centímetros cuadrados)</option>
+                                    <option value="mm2">mm² (milímetros cuadrados)</option>
+                                </select>
+                            </div>
+                            <div class="wire-helper">
+                                <h5>Para cable circular:</h5>
+                                <div class="input-row">
+                                    <label for="diameter-r">Diámetro:</label>
+                                    <input type="number" id="diameter-r" step="any" min="0">
+                                    <select id="diameter-r-unit">
+                                        <option value="mm">mm</option>
+                                        <option value="cm">cm</option>
+                                        <option value="m">m</option>
+                                    </select>
+                                    <button type="button" id="calc-area-r">Calcular Área</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--inputs para la resistividad de los emtales-->
+                        <div id="resistivity-inputs-p" class="input-group" style="display: none;">
+                            <h4>Calcular Resistividad (ρ = R × A / L)</h4>
+                            <div class="input-row">
+                                <label for="resistance-rho">Resistencia (R):</label>
+                                <input type="number" id="resistance-rho" step="any" min="0">
+                                <select id="resistance-rho-unit">
+                                    <option value="Ω">Ω (Ohmios)</option>
+                                    <option value="kΩ">kΩ (Kiloohmios)</option>
+                                    <option value="MΩ">MΩ (Megaohmios)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="area-rho">Área (A):</label>
+                                <input type="number" id="area-rho" step="any" min="0">
+                                <select id="area-rho-unit">
+                                    <option value="m2">m²</option>
+                                    <option value="cm2">cm²</option>
+                                    <option value="mm2">mm²</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="length-rho">Longitud (L):</label>
+                                <input type="number" id="length-rho" step="any" min="0">
+                                <select id="length-rho-unit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="mm">mm</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--inputs para la longitud de los metanres-->
+                        <div id="length-inputs-p" class="input-group" style="display: none;">
+                            <h4>Calcular Longitud (L = R × A / ρ)</h4>
+                            <div class="input-row">
+                                <label for="resistance-l">Resistencia (R):</label>
+                                <input type="number" id="resistance-l" step="any" min="0">
+                                <select id="resistance-l-unit">
+                                    <option value="Ω">Ω</option>
+                                    <option value="kΩ">kΩ</option>
+                                    <option value="MΩ">MΩ</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="area-l">Área (A):</label>
+                                <input type="number" id="area-l" step="any" min="0">
+                                <select id="area-l-unit">
+                                    <option value="m2">m²</option>
+                                    <option value="cm2">cm²</option>
+                                    <option value="mm2">mm²</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="resistivity-l">Resistividad (ρ):</label>
+                                <input type="number" id="resistivity-l" step="any" min="0">
+                                <span class="unit">Ω⋅m</span>
+                            </div>
+                        </div>
+
+                        <!--inputs para el area de los metales-->
+                        <div id="area-inputs-p" class="input-group" style="display: none;">
+                            <h4>Calcular Área (A = ρ × L / R)</h4>
+                            <div class="input-row">
+                                <label for="resistivity-a">Resistividad (ρ):</label>
+                                <input type="number" id="resistivity-a" step="any" min="0">
+                                <span class="unit">Ω⋅m</span>
+                            </div>
+                            <div class="input-row">
+                                <label for="length-a">Longitud (L):</label>
+                                <input type="number" id="length-a" step="any" min="0">
+                                <select id="length-a-unit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="mm">mm</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="resistance-a">Resistencia (R):</label>
+                                <input type="number" id="resistance-a" step="any" min="0">
+                                <select id="resistance-a-unit">
+                                    <option value="Ω">Ω</option>
+                                    <option value="kΩ">kΩ</option>
+                                    <option value="MΩ">MΩ</option>
+                                </select>
+                            </div>
+                            <div class="diameter-result">
+                                <h5>Diámetro equivalente (cable circular):</h5>
+                                <span id="equivalent-diameter">--</span>
+                            </div>
+                        </div>
+
+                        <!--botns-->
+                        <div class="button-group">
+                            <button type="button" id="calculate-pouillet">Calcular</button>
+                            <button type="button" id="clear-pouillet">Limpiar</button>
+                        </div>
+
+                        <!--resultds-->
+                        <div id="pouillet-results" class="results">
+                            <h4>Resultado:</h4>
+                            <div class="result-display">
+                                <span id="pouillet-result-value">--</span>
+                            </div>
+                            <div class="formula-display">
+                                <span id="pouillet-formula">Selecciona un cálculo</span>
+                            </div>
+                            <div class="additional-info">
+                                <h5>Información Adicional:</h5>
+                                <div id="pouillet-info">
+                                    <p>• La resistividad varía con la temperatura</p>
+                                    <p>• Los valores mostrados son para 20°C</p>
+                                    <p>• Para cables, considera también la resistencia de contactos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--seccion dek los codigos por colores-->
+        <section id="color-code-section">
+            <div class="container">
+                <div class="calculator-card">
+                    <header class="card-header">
+                        <h2>Calculadora de Código de Colores</h2>
+                        <p>Decodifica el valor de resistencias por sus colores</p>
+                    </header>
+
+                    <div class="calculator-content">
+                        <!--seccion de las bnds de colores-->
+                        <div class="band-selector">
+                            <h3>Número de Bandas</h3>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="band-count" value="4" checked>
+                                    <span>4 Bandas</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="band-count" value="5">
+                                    <span>5 Bandas</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="band-count" value="6">
+                                    <span>6 Bandas</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--representacion visial de la resitencia-->
+                        <div class="resistor-visual">
+                            <h3>Resistencia Visual</h3>
+                            <div class="resistor-body">
+                                <div class="resistor-cylinder">
+                                    <div class="band band-1" id="visual-band-1"></div>
+                                    <div class="band band-2" id="visual-band-2"></div>
+                                    <div class="band band-3" id="visual-band-3"></div>
+                                    <div class="band band-4" id="visual-band-4"></div>
+                                    <div class="band band-5" id="visual-band-5" style="display: none;"></div>
+                                    <div class="band band-6" id="visual-band-6" style="display: none;"></div>
+                                </div>
+                                <div class="resistor-leads">
+                                    <div class="lead lead-left"></div>
+                                    <div class="lead lead-right"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--selector de los colores-->
+                        <div class="color-selectors">
+                            <h3>Selecciona los Colores</h3>
+                            
+                            <!-- 4 bnds -->
+                            <div id="bands-4" class="band-group">
+                                <div class="color-selector">
+                                    <label>1ª Banda (1er Dígito):</label>
+                                    <select id="band1-4">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>2ª Banda (2do Dígito):</label>
+                                    <select id="band2-4">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0" data-color="black">Negro (0)</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>3ª Banda (Multiplicador):</label>
+                                    <select id="band3-4">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="black">Negro (×1)</option>
+                                        <option value="10" data-color="brown">Marrón (×10)</option>
+                                        <option value="100" data-color="red">Rojo (×100)</option>
+                                        <option value="1000" data-color="orange">Naranja (×1K)</option>
+                                        <option value="10000" data-color="yellow">Amarillo (×10K)</option>
+                                        <option value="100000" data-color="green">Verde (×100K)</option>
+                                        <option value="1000000" data-color="blue">Azul (×1M)</option>
+                                        <option value="10000000" data-color="violet">Violeta (×10M)</option>
+                                        <option value="0.1" data-color="gold">Dorado (×0.1)</option>
+                                        <option value="0.01" data-color="silver">Plateado (×0.01)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>4ª Banda (Tolerancia):</label>
+                                    <select id="band4-4">
+                                        <option value="">Seleccionar</option>
+                                        <option value="5" data-color="gold">Dorado (±5%)</option>
+                                        <option value="10" data-color="silver">Plateado (±10%)</option>
+                                        <option value="1" data-color="brown">Marrón (±1%)</option>
+                                        <option value="2" data-color="red">Rojo (±2%)</option>
+                                        <option value="20" data-color="none">Sin banda (±20%)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 5 bnds -->
+                            <div id="bands-5" class="band-group" style="display: none;">
+                                <div class="color-selector">
+                                    <label>1ª Banda (1er Dígito):</label>
+                                    <select id="band1-5">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>2ª Banda (2do Dígito):</label>
+                                    <select id="band2-5">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0" data-color="black">Negro (0)</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+
+                                <div class="color-selector">
+                                    <label>3ª Banda (3er Dígito):</label>
+                                    <select id="band3-5">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0" data-color="black">Negro (0)</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>4ª Banda (Multiplicador):</label>
+                                    <select id="band4-5">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="black">Negro (×1)</option>
+                                        <option value="10" data-color="brown">Marrón (×10)</option>
+                                        <option value="100" data-color="red">Rojo (×100)</option>
+                                        <option value="1000" data-color="orange">Naranja (×1K)</option>
+                                        <option value="10000" data-color="yellow">Amarillo (×10K)</option>
+                                        <option value="100000" data-color="green">Verde (×100K)</option>
+                                        <option value="1000000" data-color="blue">Azul (×1M)</option>
+                                        <option value="0.1" data-color="gold">Dorado (×0.1)</option>
+                                        <option value="0.01" data-color="silver">Plateado (×0.01)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>5ª Banda (Tolerancia):</label>
+                                    <select id="band5-5">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="brown">Marrón (±1%)</option>
+                                        <option value="2" data-color="red">Rojo (±2%)</option>
+                                        <option value="0.5" data-color="green">Verde (±0.5%)</option>
+                                        <option value="0.25" data-color="blue">Azul (±0.25%)</option>
+                                        <option value="0.1" data-color="violet">Violeta (±0.1%)</option>
+                                        <option value="5" data-color="gold">Dorado (±5%)</option>
+                                        <option value="10" data-color="silver">Plateado (±10%)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 6 Bandas -->
+                            <div id="bands-6" class="band-group" style="display: none;">
+                                <div class="color-selector">
+                                    <label>1ª Banda (1er Dígito):</label>
+                                    <select id="band1-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>2ª Banda (2do Dígito):</label>
+                                    <select id="band2-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0" data-color="black">Negro (0)</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+
+                                <div class="color-selector">
+                                    <label>3ª Banda (3er Dígito):</label>
+                                    <select id="band3-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="0" data-color="black">Negro (0)</option>
+                                        <option value="1" data-color="brown">Marrón (1)</option>
+                                        <option value="2" data-color="red">Rojo (2)</option>
+                                        <option value="3" data-color="orange">Naranja (3)</option>
+                                        <option value="4" data-color="yellow">Amarillo (4)</option>
+                                        <option value="5" data-color="green">Verde (5)</option>
+                                        <option value="6" data-color="blue">Azul (6)</option>
+                                        <option value="7" data-color="violet">Violeta (7)</option>
+                                        <option value="8" data-color="gray">Gris (8)</option>
+                                        <option value="9" data-color="white">Blanco (9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>4ª Banda (Multiplicador):</label>
+                                    <select id="band4-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="black">Negro (×1)</option>
+                                        <option value="10" data-color="brown">Marrón (×10)</option>
+					<option value="100" data-color="red">Rojo (×100)</option>
+                                        <option value="1000" data-color="orange">Naranja (×1K)</option>
+                                        <option value="10000" data-color="yellow">Amarillo (×10K)</option>
+                                        <option value="100000" data-color="green">Verde (×100K)</option>
+                                        <option value="1000000" data-color="blue">Azul (×1M)</option>
+                                        <option value="0.1" data-color="gold">Dorado (×0.1)</option>
+                                        <option value="0.01" data-color="silver">Plateado (×0.01)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="color-selector">
+                                    <label>5ª Banda (Tolerancia):</label>
+                                    <select id="band5-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1" data-color="brown">Marrón (±1%)</option>
+                                        <option value="2" data-color="red">Rojo (±2%)</option>
+                                        <option value="0.5" data-color="green">Verde (±0.5%)</option>
+                                        <option value="0.25" data-color="blue">Azul (±0.25%)</option>
+                                        <option value="0.1" data-color="violet">Violeta (±0.1%)</option>
+                                        <option value="5" data-color="gold">Dorado (±5%)</option>
+                                        <option value="10" data-color="silver">Plateado (±10%)</option>
+                                    </select>
+                                </div>
+
+                                <div class="color-selector">
+                                    <label>6ª Banda (Coef. Temperatura):</label>
+                                    <select id="band6-6">
+                                        <option value="">Seleccionar</option>
+                                        <option value="100" data-color="brown">Marrón (100 ppm/K)</option>
+                                        <option value="50" data-color="red">Rojo (50 ppm/K)</option>
+                                        <option value="15" data-color="orange">Naranja (15 ppm/K)</option>
+                                        <option value="25" data-color="yellow">Amarillo (25 ppm/K)</option>
+                                        <option value="10" data-color="blue">Azul (10 ppm/K)</option>
+                                        <option value="5" data-color="violet">Violeta (5 ppm/K)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- tabla de las resistencias por colores-->
+                        <div class="color-reference">
+                            <h3>Tabla de Referencia de Colores</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Color</th>
+                                        <th>Dígito</th>
+                                        <th>Multiplicador</th>
+                                        <th>Tolerancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color: black; color: white;">Negro</td>
+                                        <td>0</td>
+                                        <td>×1</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: brown; color: white;">Marrón</td>
+                                        <td>1</td>
+                                        <td>×10</td>
+                                        <td>±1%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: red; color: white;">Rojo</td>
+                                        <td>2</td>
+                                        <td>×100</td>
+                                        <td>±2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: orange;">Naranja</td>
+                                        <td>3</td>
+                                        <td>×1K</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: yellow;">Amarillo</td>
+                                        <td>4</td>
+                                        <td>×10K</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: green; color: white;">Verde</td>
+                                        <td>5</td>
+                                        <td>×100K</td>
+                                        <td>±0.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: blue; color: white;">Azul</td>
+                                        <td>6</td>
+                                        <td>×1M</td>
+                                        <td>±0.25%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: violet; color: white;">Violeta</td>
+                                        <td>7</td>
+                                        <td>×10M</td>
+                                        <td>±0.1%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: gray;">Gris</td>
+                                        <td>8</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: white;">Blanco</td>
+                                        <td>9</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: gold;">Dorado</td>
+                                        <td>-</td>
+                                        <td>×0.1</td>
+                                        <td>±5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: silver;">Plateado</td>
+                                        <td>-</td>
+                                        <td>×0.01</td>
+                                        <td>±10%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- btns -->
+                        <div class="button-group">
+                            <button type="button" id="calculate-color">Calcular</button>
+                            <button type="button" id="clear-color">Limpiar</button>
+                        </div>
+
+                        <!-- rsltds -->
+                        <div id="color-results" class="results">
+                            <h4>Resultado:</h4>
+                            <div class="result-display">
+                                <span id="color-result-value">--</span>
+                            </div>
+                            <div class="result-details">
+                                <p><strong>Valor:</strong> <span id="resistance-value">--</span></p>
+                                <p><strong>Tolerancia:</strong> <span id="tolerance-value">--</span></p>
+                                <p><strong>Rango:</strong> <span id="range-value">--</span></p>
+                                <div id="temp-coeff" style="display: none;">
+                                    <p><strong>Coef. Temperatura:</strong> <span id="temp-coeff-value">--</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- calculadora inverwsa -->
+                        <div class="reverse-calculator">
+                            <h3>Calculadora Inversa</h3>
+                            <p>Ingresa el valor de resistencia para obtener los colores:</p>
+                            <div class="input-row">
+                                <label for="resistance-input">Resistencia:</label>
+                                <input type="number" id="resistance-input" step="any" min="0">
+                                <select id="resistance-unit">
+                                    <option value="1">Ω (Ohmios)</option>
+                                    <option value="1000">kΩ (Kiloohmios)</option>
+                                    <option value="1000000">MΩ (Megaohmios)</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="tolerance-input">Tolerancia:</label>
+                                <select id="tolerance-input">
+                                    <option value="20">±20%</option>
+                                    <option value="10">±10%</option>
+                                    <option value="5">±5%</option>
+                                    <option value="2">±2%</option>
+                                    <option value="1">±1%</option>
+                                    <option value="0.5">±0.5%</option>
+                                    <option value="0.25">±0.25%</option>
+                                    <option value="0.1">±0.1%</option>
+                                </select>
+                            </div>
+                            <button type="button" id="calculate-reverse">Obtener Colores</button>
+                            <div id="reverse-result" class="reverse-result">
+                                <h4>Colores sugeridos:</h4>
+                                <p id="suggested-colors">--</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--pie de página (footer) de la página web.
+        Aquí se pueden incluir enlaces de contacto,
+        derechos de autor, información adicional o
+        enlaces a redes sociales.-->
+    <!--footer-->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Calculadoras de Electrónica. Herramientas educativas para estudiantes y profesionales.</p>
+            <p>Desarrollado para facilitar los cálculos básicos en electrónica y electronicos.</p>
+            <div class="footer-links">
+                <h4>Recursos Adicionales:</h4>
+                <ul>
+                    <li>📘 Ley de Ohm: Fundamental para circuitos eléctricos</li>
+                    <li>🔧 Ley de Pouillet: Resistencia de conductores</li>
+                    <li>🎨 Código de Colores: Identificación de resistencias</li>
+                    <li>⚡ Fórmulas básicas de electrónica</li>
+                </ul>
+            </div>
+            <div class="disclaimer">
+                <p><small>Nota: Estas calculadoras son herramientas educativas. Para aplicaciones críticas, siempre verifique los cálculos con instrumentos de medición precisos.</small></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
