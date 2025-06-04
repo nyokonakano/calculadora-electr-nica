@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--esta cabecera presenta el título, una descripción y una navegación
+    <!--cabecera: presenta el título, una descripción y una navegación
     rápida a las distintas calculadoras de la página-->
     <header>
         <div class="container">
@@ -25,7 +25,7 @@
     </header>
 
     <main>
-        <!--Sección de la ley de Ohm-->
+        <!--seccion de la ley de Ohm-->
         <section id="ohm-section">
             <div class="container">
                 <div class="calculator-card">
@@ -35,7 +35,7 @@
                     </header>
                     
                     <div class="calculator-content">
-                        <!-- Selector de Cálculo -->
+                        <!-- aqui se va a selecionar que es lo que euire calcular el usuario -->
                         <div class="calculation-selector">
                             <h3>¿Qué deseas calcular?</h3>
                             <div class="radio-group">
@@ -54,13 +54,14 @@
                             </div>
                         </div>
 
-                        <!-- inputs para que el ususrario ingrese los voltajes -->
+                        <!-- si el usuario escoje que quiere calcular el voltaje: inputs para que el ususrario ingrese los voltajes -->
                         <div id="voltage-inputs" class="input-group">
                             <h4>Calcular Voltaje (V = I × R)</h4>
                             <div class="input-row">
                                 <label for="current-v">Corriente (I):</label>
                                 <input type="number" id="current-v" step="any" min="0">
                                 <select id="current-v-unit">
+                                    <!--simbolos de la corriente-->
                                     <option value="A">A (Amperios)</option>
                                     <option value="mA">mA (Miliamperios)</option>
                                     <option value="μA">μA (Microamperios)</option>
@@ -70,6 +71,7 @@
                                 <label for="resistance-v">Resistencia (R):</label>
                                 <input type="number" id="resistance-v" step="any" min="0">
                                 <select id="resistance-v-unit">
+                                    <!--simbolos de la resistencia-->
                                     <option value="Ω">Ω (Ohmios)</option>
                                     <option value="kΩ">kΩ (Kiloohmios)</option>
                                     <option value="MΩ">MΩ (Megaohmios)</option>
@@ -77,13 +79,14 @@
                             </div>
                         </div>
 
-                        <!-- inputs para que el ususrario ingrese las crrients -->
+                        <!-- si el usuario escoje que quiere calcular ls corrientes: inputs para que el ususrario ingrese las crrients -->
                         <div id="current-inputs" class="input-group" style="display: none;">
                             <h4>Calcular Corriente (I = V / R)</h4>
                             <div class="input-row">
                                 <label for="voltage-i">Voltaje (V):</label>
                                 <input type="number" id="voltage-i" step="any" min="0">
                                 <select id="voltage-i-unit">
+                                    <!--simbolos de los voltajes-->
                                     <option value="V">V (Voltios)</option>
                                     <option value="mV">mV (Milivoltios)</option>
                                     <option value="kV">kV (Kilovoltios)</option>
@@ -93,6 +96,7 @@
                                 <label for="resistance-i">Resistencia (R):</label>
                                 <input type="number" id="resistance-i" step="any" min="0">
                                 <select id="resistance-i-unit">
+                                    <!--simbolos de la resistencia-->
                                     <option value="Ω">Ω (Ohmios)</option>
                                     <option value="kΩ">kΩ (Kiloohmios)</option>
                                     <option value="MΩ">MΩ (Megaohmios)</option>
@@ -100,13 +104,14 @@
                             </div>
                         </div>
 
-                        <!-- inputs para que el ususrario ingrese las resistencias -->
+                        <!-- si el usuario escoje que quiere calcular la resistencia: inputs para que el ususrario ingrese las resistencias -->
                         <div id="resistance-inputs" class="input-group" style="display: none;">
                             <h4>Calcular Resistencia (R = V / I)</h4>
                             <div class="input-row">
                                 <label for="voltage-r">Voltaje (V):</label>
                                 <input type="number" id="voltage-r" step="any" min="0">
                                 <select id="voltage-r-unit">
+                                    <!--simbolos de los voltajes-->
                                     <option value="V">V (Voltios)</option>
                                     <option value="mV">mV (Milivoltios)</option>
                                     <option value="kV">kV (Kilovoltios)</option>
@@ -116,6 +121,7 @@
                                 <label for="current-r">Corriente (I):</label>
                                 <input type="number" id="current-r" step="any" min="0">
                                 <select id="current-r-unit">
+                                    <!--simbolos de la corriente-->
                                     <option value="A">A (Amperios)</option>
                                     <option value="mA">mA (Miliamperios)</option>
                                     <option value="μA">μA (Microamperios)</option>
@@ -123,7 +129,7 @@
                             </div>
                         </div>
 
-                        <!-- botones -->
+                        <!-- botones para calcular o limpiar los imputs para que el ususario ingrese nuevos datos -->
                         <div class="button-group">
                             <button type="button" id="calculate-ohm">Calcular</button>
                             <button type="button" id="clear-ohm">Limpiar</button>
@@ -133,6 +139,7 @@
                         <div id="ohm-results" class="results">
                             <h4>Resultado:</h4>
                             <div class="result-display">
+                                <!--las "--" cambiaran segun el resultado, eso se lograra con el js-->
                                 <span id="ohm-result-value">--</span>
                             </div>
                             <div class="formula-display">
@@ -144,7 +151,7 @@
             </div>
         </section>
 
-        <!--Sección de la ley de Pouillet-->
+        <!--seccion de la ley de pouillet-->
         <section id="pouillet-section">
             <div class="container">
                 <div class="calculator-card">
@@ -161,6 +168,7 @@
                                 <p><strong>R = ρ × (L/A)</strong></p>
                                 <p>Donde:</p>
                                 <ul>
+                                    <!--simbolos de la ley de pouillet-->
                                     <li><strong>R</strong> = Resistencia (Ω)</li>
                                     <li><strong>ρ</strong> = Resistividad del material (Ω⋅m)</li>
                                     <li><strong>L</strong> = Longitud del conductor (m)</li>
@@ -169,7 +177,7 @@
                             </div>
                         </div>
 
-                        <!--selector de calculo-->
+                        <!--el  ususario selecciona que tipo de calculo desea realizar-->
                         <div class="calculation-selector">
                             <h3>¿Qué deseas calcular?</h3>
                             <div class="radio-group">
@@ -192,7 +200,7 @@
                             </div>
                         </div>
 
-                        <!--tabla de la resistividad de los metales-->
+                        <!--aqui se mostrara la resistividad de cada metal comunes pero a 20°c "temperatura ambiente"-->
                         <div class="resistivity-table">
                             <h3>Resistividad de Materiales Comunes (20°C)</h3>
                             <table>
@@ -281,7 +289,7 @@
                             </table>
                         </div>
 
-                        <!--inputs para la resistencia-->
+                        <!--si el ususario desea calcular la resistencia: inputs para la resistencia-->
                         <div id="resistance-inputs-p" class="input-group">
                             <h4>Calcular Resistencia (R = ρ × L / A)</h4>
                             <div class="input-row">
@@ -324,7 +332,7 @@
                             </div>
                         </div>
 
-                        <!--inputs para la resistividad de los emtales-->
+                        <!--si el ususario desea calcular la resistividad: inputs para la resistividad de los emtales-->
                         <div id="resistivity-inputs-p" class="input-group" style="display: none;">
                             <h4>Calcular Resistividad (ρ = R × A / L)</h4>
                             <div class="input-row">
@@ -356,7 +364,7 @@
                             </div>
                         </div>
 
-                        <!--inputs para la longitud de los metanres-->
+                        <!--si el ususario desea calcular la longitud: inputs para la longitud de los metanres-->
                         <div id="length-inputs-p" class="input-group" style="display: none;">
                             <h4>Calcular Longitud (L = R × A / ρ)</h4>
                             <div class="input-row">
@@ -384,7 +392,7 @@
                             </div>
                         </div>
 
-                        <!--inputs para el area de los metales-->
+                        <!--si el ususario desea calcular el area: inputs para el area de los metales-->
                         <div id="area-inputs-p" class="input-group" style="display: none;">
                             <h4>Calcular Área (A = ρ × L / R)</h4>
                             <div class="input-row">
@@ -410,13 +418,15 @@
                                     <option value="MΩ">MΩ</option>
                                 </select>
                             </div>
+                            <!--en caso de que el material sea circular o solo tenga el diametro del material
+                            podra calcular el area en esta parte ingresando el diametro del mismo-->
                             <div class="diameter-result">
                                 <h5>Diámetro equivalente (cable circular):</h5>
                                 <span id="equivalent-diameter">--</span>
                             </div>
                         </div>
 
-                        <!--botns-->
+                        <!--botns para calcualr o limpiar los imputs-->
                         <div class="button-group">
                             <button type="button" id="calculate-pouillet">Calcular</button>
                             <button type="button" id="clear-pouillet">Limpiar</button>
@@ -426,6 +436,7 @@
                         <div id="pouillet-results" class="results">
                             <h4>Resultado:</h4>
                             <div class="result-display">
+                                <!--las "--" cambiaran segun el resultado, eso se lograra con el js-->
                                 <span id="pouillet-result-value">--</span>
                             </div>
                             <div class="formula-display">
@@ -474,11 +485,12 @@
                             </div>
                         </div>
 
-                        <!--representacion visial de la resitencia-->
+                        <!--se muestra la representacion visial de la resitencia-->
                         <div class="resistor-visual">
                             <h3>Resistencia Visual</h3>
                             <div class="resistor-body">
                                 <div class="resistor-cylinder">
+                                    <!-- bandas de colores que se muestran en la resistencia -->
                                     <div class="band band-1" id="visual-band-1"></div>
                                     <div class="band band-2" id="visual-band-2"></div>
                                     <div class="band band-3" id="visual-band-3"></div>
@@ -497,7 +509,7 @@
                         <div class="color-selectors">
                             <h3>Selecciona los Colores</h3>
                             
-                            <!-- 4 bnds -->
+                            <!-- opciones si es qeu el resistor tiene 4 bnds -->
                             <div id="bands-4" class="band-group">
                                 <div class="color-selector">
                                     <label>1ª Banda (1er Dígito):</label>
@@ -562,7 +574,7 @@
                                 </div>
                             </div>
 
-                            <!-- 5 bnds -->
+                            <!-- opciones si es qeu el resistor tiene 5 bnds -->
                             <div id="bands-5" class="band-group" style="display: none;">
                                 <div class="color-selector">
                                     <label>1ª Banda (1er Dígito):</label>
@@ -645,7 +657,7 @@
                                 </div>
                             </div>
 
-                            <!-- 6 Bandas -->
+                            <!--opciones si es qeu el resistor tiene 6 Bandas -->
                             <div id="bands-6" class="band-group" style="display: none;">
                                 <div class="color-selector">
                                     <label>1ª Banda (1er Dígito):</label>
@@ -742,7 +754,7 @@
                             </div>
                         </div>
 
-                        <!-- tabla de las resistencias por colores-->
+                        <!--se muestra una tabla con las resistencias por colores-->
                         <div class="color-reference">
                             <h3>Tabla de Referencia de Colores</h3>
                             <table>
@@ -831,7 +843,7 @@
                             </table>
                         </div>
 
-                        <!-- btns -->
+                        <!-- btns para calcular o limpiar los imputs para un calculo nuevo-->
                         <div class="button-group">
                             <button type="button" id="calculate-color">Calcular</button>
                             <button type="button" id="clear-color">Limpiar</button>
@@ -841,6 +853,7 @@
                         <div id="color-results" class="results">
                             <h4>Resultado:</h4>
                             <div class="result-display">
+                                <!--los "--" cambiaran segun el resusltado, eso se lograra con el js-->
                                 <span id="color-result-value">--</span>
                             </div>
                             <div class="result-details">
@@ -853,36 +866,59 @@
                             </div>
                         </div>
 
-                        <!-- calculadora inverwsa -->
-                        <div class="reverse-calculator">
-                            <h3>Calculadora Inversa</h3>
-                            <p>Ingresa el valor de resistencia para obtener los colores:</p>
-                            <div class="input-row">
+                        <!-- si el usuario solo tiene la resistencia de los valores, la tolerancia y/o el coeficiente de temperatura
+                            podra saber de que colores esta compuesto el resistor, esta parte es mas que todo para comprobar si los colores o el
+                            resistor cumplen con la informacion dada-->
+                        </div><div class="reverse-calculator">
+                            <h3>Calculadora Inversa (Valor → Colores)</h3>
+                            
+                            <div class="input-group">
                                 <label for="resistance-input">Resistencia:</label>
                                 <input type="number" id="resistance-input" step="any" min="0">
                                 <select id="resistance-unit">
-                                    <option value="1">Ω (Ohmios)</option>
-                                    <option value="1000">kΩ (Kiloohmios)</option>
-                                    <option value="1000000">MΩ (Megaohmios)</option>
+                                    <option value="1">Ω</option>
+                                    <option value="1000">kΩ</option>
+                                    <option value="1000000">MΩ</option>
                                 </select>
                             </div>
-                            <div class="input-row">
+
+                            <div class="input-group">
                                 <label for="tolerance-input">Tolerancia:</label>
                                 <select id="tolerance-input">
-                                    <option value="20">±20%</option>
-                                    <option value="10">±10%</option>
-                                    <option value="5">±5%</option>
-                                    <option value="2">±2%</option>
-                                    <option value="1">±1%</option>
-                                    <option value="0.5">±0.5%</option>
-                                    <option value="0.25">±0.25%</option>
-                                    <option value="0.1">±0.1%</option>
+                                    <option value="20">±20% (Sin banda)</option>
+                                    <option value="10">±10% (Plateado)</option>
+                                    <option value="5">±5% (Dorado)</option>
+                                    <option value="2">±2% (Rojo)</option>
+                                    <option value="1">±1% (Marrón)</option>
+                                    <option value="0.5">±0.5% (Verde)</option>
+                                    <option value="0.25">±0.25% (Azul)</option>
+                                    <option value="0.1">±0.1% (Violeta)</option>
                                 </select>
                             </div>
-                            <button type="button" id="calculate-reverse">Obtener Colores</button>
-                            <div id="reverse-result" class="reverse-result">
-                                <h4>Colores sugeridos:</h4>
-                                <p id="suggested-colors">--</p>
+
+                            <!-- el ususario selecciona el campo de coeficiente de temperatira del resistor -->
+                            <div class="input-group" id="temp-coeff-input-group" style="display: none;">
+                                <label for="temp-coeff-input">Coeficiente de Temperatura (ppm/K):</label>
+                                <select id="temp-coeff-input">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="250">250 ppm/K (Negro)</option>
+                                    <option value="100">100 ppm/K (Marrón)</option>
+                                    <option value="50">50 ppm/K (Rojo)</option>
+                                    <option value="15">15 ppm/K (Naranja)</option>
+                                    <option value="25">25 ppm/K (Amarillo)</option>
+                                    <option value="20">20 ppm/K (Verde)</option>
+                                    <option value="10">10 ppm/K (Azul)</option>
+                                    <option value="5">5 ppm/K (Violeta)</option>
+                                    <option value="1">1 ppm/K (Gris)</option>
+                                </select>
+                            </div>
+
+                            <button id="calculate-reverse">Calcular Colores</button>
+                            
+                            <!--se le muestra al ususario los colores sugeridos sefun lo que haya selecionado-->
+                            <div class="result-section">
+                                <h4>Colores Sugeridos:</h4>
+                                <div id="suggested-colors">--</div>
                             </div>
                         </div>
                     </div>
@@ -891,21 +927,24 @@
         </section>
     </main>
 
-    <!--pie de la página web. Aquí se pueden incluir enlaces de contacto,
-        derechos de autor, información adicional o enlaces a redes sociales.-->
-    <!--footer-->
+    <!--pie de página (footer) de la página web.
+        Aquí se pueden incluir enlaces de contacto,
+        derechos de autor, información adicional o
+        enlaces a redes sociales.-->
     <footer>
         <div class="container">
             <p>&copy; 2025 Calculadoras de Electrónica. Herramientas educativas para estudiantes y profesionales.</p>
-            <p>Desarrollado para facilitar los cálculos básicos en electrónica y electronicos.</p>
+            <p>Desarrollado por estudiantes de Ingeniería en Sistemas como recurso educativo para la comunidad de ingeniería.</p>
             <div class="footer-links">
+                <!--enlaces utiles sobre cada recurso usado-->
                 <h4>Recursos Adicionales:</h4>
                 <ul>
-                    <li>📘 Ley de Ohm: Fundamental para circuitos eléctricos</li>
-                    <li>🔧 Ley de Pouillet: Resistencia de conductores</li>
-                    <li>🎨 Código de Colores: Identificación de resistencias</li>
-                    <li>⚡ Fórmulas básicas de electrónica</li>
+                    <li><a href="https://portalacademico.cch.unam.mx/cibernetica1/implementacion-de-circuitos-logicos/ley-de-ohm" style="text-decoration-line: none; color: #ffffff">📘 Ley de Ohm: Fundamental para circuitos eléctricos</a></li>
+                    <li><a href="www.academia.edu/download/41002113/Fisica-III-Laboratorio-03B-Mesa-No.4-art3-Resistencia-Electrica-y-Resistividad-Ley-De-Pouillet..pdf" style="text-decoration-line: none; color: #ffffff">🔧 Ley de Pouillet: Resistencia de conductores</a></li>
+                    <li><a href="https://www.te.com/es/products/passive-components/resistors/intersection/resistor-color-codes.html" style="text-decoration-line: none; color: #ffffff">🎨 Código de Colores: Identificación de resistencias</a></li>
+                    <li><a href="https://www.luisllamas.es/formulas-electronica/" style="text-decoration-line: none; color: #ffffff">⚡ Fórmulas básicas de electrónica</a></li>
                 </ul>
+                
             </div>
             <div class="disclaimer">
                 <p><small>Nota: Estas calculadoras son herramientas educativas. Para aplicaciones críticas, siempre verifique los cálculos con instrumentos de medición precisos.</small></p>
