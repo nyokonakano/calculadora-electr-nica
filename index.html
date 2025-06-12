@@ -4,7 +4,992 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadoras de Electrónica</title>
-    <link rel="stylesheet" href="style.css">
+    <!--<link rel="stylesheet" href="style.css">-->
+    <style>
+        /* Reset y configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Secciones principales */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .calculator-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .calculator-content {
+            padding: 2rem;
+        }
+
+        /* Selectores de cálculo */
+        .calculation-selector {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .calculation-selector h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.7rem 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .radio-group label:hover {
+            border-color: #4f46e5;
+            background: #f1f5f9;
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: #4f46e5;
+        }
+
+        .radio-group input[type="radio"]:checked + span {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .radio-group label:has(input[type="radio"]:checked) {
+            border-color: #4f46e5;
+            background: #eef2ff;
+        }
+
+        /* Grupos de inputs */
+        .input-group {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-group h4 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .input-row label {
+            min-width: 120px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .input-row input[type="number"] {
+            flex: 1;
+            min-width: 150px;
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-row input[type="number"]:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-row select {
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-row select:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .unit {
+            background: #e2e8f0;
+            padding: 0.7rem;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        /* Fórmulas */
+        .formula-section {
+            background: #1e293b;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .formula-section h3 {
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .main-formula {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .main-formula p {
+            margin-bottom: 0.5rem;
+        }
+
+        .main-formula ul {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .main-formula li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Tabla de resistividades */
+        .resistivity-table {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .resistivity-table h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .resistivity-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .resistivity-table th,
+        .resistivity-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .resistivity-table th {
+            background: #4f46e5;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .resistivity-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .use-material {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .use-material:hover {
+            background: #059669;
+        }
+
+        /* Ayudante de cable */
+        .wire-helper {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .wire-helper h5 {
+            color: #065f46;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Visualización de resistencia */
+        .resistor-visual {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .resistor-visual h3 {
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .resistor-body {
+            display: inline-block;
+            position: relative;
+        }
+
+        .resistor-cylinder {
+            width: 200px;
+            height: 40px;
+            background: #d4b896;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .band {
+            width: 8px;
+            height: 35px;
+            border-radius: 2px;
+            border: 1px solid #333;
+        }
+
+        .resistor-leads {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 260px;
+            left: -30px;
+        }
+
+        .lead {
+            width: 30px;
+            height: 2px;
+            background: #666;
+            position: absolute;
+            top: 0;
+        }
+
+        .lead-left {
+            left: 0;
+        }
+
+        .lead-right {
+            right: 0;
+        }
+
+        /* Selectores de color */
+        .color-selectors {
+            margin: 2rem 0;
+        }
+
+        .color-selectors h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .band-selector {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .band-selector h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .band-group {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .color-selector {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .color-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .color-selector select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .color-selector select:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        /* Tabla de referencia de colores */
+        .color-reference {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .color-reference h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .color-reference table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-reference th,
+        .color-reference td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .color-reference th {
+            background: #4f46e5;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .color-reference tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Botones */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botón de calcular para calculadora inversa */
+        #calculate-reverse {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            display: block;
+            margin: 2rem auto;
+        }
+
+        #calculate-reverse:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        #calculate-reverse:active {
+            transform: translateY(-1px);
+        }
+
+        #calculate-ohm,
+        #calculate-pouillet,
+        #calculate-color,
+        #calc-area-r {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        #calculate-ohm:hover,
+        #calculate-pouillet:hover,
+        #calculate-color:hover,
+        #calc-area-r:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        #clear-ohm,
+        #clear-pouillet,
+        #clear-color {
+            background: #6b7280;
+            color: white;
+        }
+
+        #clear-ohm:hover,
+        #clear-pouillet:hover,
+        #clear-color:hover {
+            background: #4b5563;
+            transform: translateY(-2px);
+        }
+
+        /* Resultados */
+        .results {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .results h4 {
+            color: #065f46;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .result-display {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Resultado de colores sugeridos */
+        .reverse-calculator .result-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+        }
+
+        .reverse-calculator .result-section h4 {
+            color: #065f46;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 0.5rem;
+        }
+
+        #ohm-result-value,
+        #pouillet-result-value,
+        #color-result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #059669;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: 2px solid #10b981;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .formula-display {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        #ohm-formula,
+        #pouillet-formula {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .result-details {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .result-details p {
+            background: white;
+            padding: 0.7rem;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+
+        .additional-info {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #a7f3d0;
+        }
+
+        .additional-info h5 {
+            color: #065f46;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        #pouillet-info p {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.3rem 0.7rem;
+            margin-bottom: 0.3rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        /* Calculadora inversa */
+        .reverse-calculator {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+
+        .reverse-calculator h3 {
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(146, 64, 14, 0.1);
+        }
+
+        .reverse-calculator p {
+            color: #78350f;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos específicos para input-group dentro de reverse-calculator */
+        .reverse-calculator .input-group {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+        }
+
+        .reverse-calculator .input-group h4 {
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .reverse-calculator .input-group label {
+            color: #92400e;
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .reverse-calculator .input-group input[type="number"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+            margin-bottom: 0.8rem;
+        }
+
+        .reverse-calculator .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: #d97706;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .reverse-calculator .input-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reverse-calculator .input-group select:focus {
+            outline: none;
+            border-color: #d97706;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .reverse-result {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .reverse-result h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        #suggested-colors {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #059669;
+            background: #ecfdf5;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            border-left: 4px solid #10b981;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diameter-result {
+            background: #dbeafe;
+            border: 1px solid #60a5fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .diameter-result h5 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        #equivalent-diameter {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .tooltip {
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 0.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            text-align: center;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .disclaimer small {
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .calculator-content {
+                padding: 1rem;
+            }
+            
+            .input-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .input-row label {
+                min-width: auto;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .band-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            #ohm-result-value,
+            #pouillet-result-value,
+            #color-result-value {
+                font-size: 1.5rem;
+                padding: 0.7rem 1rem;
+            }
+
+            .reverse-calculator {
+                padding: 1.5rem;
+            }
+            
+            .reverse-calculator .input-group {
+                padding: 1rem;
+            }
+            
+            .reverse-calculator .input-group input[type="number"],
+            .reverse-calculator .input-group select {
+                font-size: 0.9rem;
+                padding: 0.7rem;
+            }
+            
+            #calculate-reverse {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            #suggested-colors {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+        }
+
+        /* Colores para las bandas */
+        .color-black { background-color: #000000; }
+        .color-brown { background-color: #8B4513; }
+        .color-red { background-color: #FF0000; }
+        .color-orange { background-color: #FFA500; }
+        .color-yellow { background-color: #FFFF00; }
+        .color-green { background-color: #008000; }
+        .color-blue { background-color: #0000FF; }
+        .color-violet { background-color: #8B00FF; }
+        .color-gray { background-color: #808080; }
+        .color-white { background-color: #FFFFFF; border: 1px solid #ccc; }
+        .color-gold { background-color: #FFD700; }
+        .color-silver { background-color: #C0C0C0; }
+        .color-none { background-color: transparent; border: 2px dashed #ccc; }
+    </style>
 </head>
 <body>
     <!--cabecera: presenta el título, una descripción y una navegación
@@ -951,6 +1936,7 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <!--<script src="script.js"></script>-->
+    <script></script>
 </body>
 </html>
