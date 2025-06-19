@@ -1,7 +1,4 @@
-/*si se usan los enlaces para conectar el html con el css quitar el simbolo de comentario en el principio del codigo y al final*/
-/*y reelstablecer los comentariosdescriptivos de cada bloque*/
-/*
-/* Reset y configuración base * /
+/* Reset y configuración base */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +19,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header * /
+/* Header */
 header {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -72,7 +69,7 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Secciones principales * /
+/* Secciones principales */
 section {
     margin-bottom: 3rem;
 }
@@ -116,7 +113,7 @@ section {
     padding: 2rem;
 }
 
-/* Selectores de cálculo * /
+/* Selectores de cálculo */
 .calculation-selector {
     background: #f8fafc;
     padding: 1.5rem;
@@ -170,7 +167,7 @@ section {
     background: #eef2ff;
 }
 
-/* Grupos de inputs * /
+/* Grupos de inputs */
 .input-group {
     background: #f8fafc;
     padding: 1.5rem;
@@ -242,7 +239,7 @@ section {
     white-space: nowrap;
 }
 
-/* Fórmulas * /
+/* Fórmulas */
 .formula-section {
     background: #1e293b;
     color: white;
@@ -276,7 +273,7 @@ section {
     margin-bottom: 0.3rem;
 }
 
-/* Tabla de resistividades * /
+/* Tabla de resistividades */
 .resistivity-table {
     margin: 2rem 0;
     overflow-x: auto;
@@ -333,7 +330,7 @@ section {
     background: #059669;
 }
 
-/* Ayudante de cable * /
+/* Ayudante de cable */
 .wire-helper {
     background: #ecfdf5;
     border: 1px solid #a7f3d0;
@@ -348,7 +345,7 @@ section {
     font-weight: 600;
 }
 
-/* Visualización de resistencia * /
+/* Visualización de resistencia */
 .resistor-visual {
     text-align: center;
     margin: 2rem 0;
@@ -412,7 +409,7 @@ section {
     right: 0;
 }
 
-/* Selectores de color * /
+/* Selectores de color */
 .color-selectors {
     margin: 2rem 0;
 }
@@ -473,7 +470,7 @@ section {
     border-color: #4f46e5;
 }
 
-/* Tabla de referencia de colores * /
+/* Tabla de referencia de colores */
 .color-reference {
     margin: 2rem 0;
     overflow-x: auto;
@@ -514,7 +511,7 @@ section {
     background: #f8fafc;
 }
 
-/* Botones * /
+/* Botones */
 .button-group {
     display: flex;
     gap: 1rem;
@@ -535,7 +532,7 @@ button {
     letter-spacing: 0.5px;
 }
 
-/* Botón de calcular para calculadora inversa * / 
+/* Botón de calcular para calculadora inversa */
 #calculate-reverse {
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     color: white;
@@ -594,7 +591,7 @@ button {
     transform: translateY(-2px);
 }
 
-/* Resultados * / 
+/* Resultados */
 .results {
     background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
     border: 2px solid #10b981;
@@ -616,7 +613,7 @@ button {
     margin-bottom: 1rem;
 }
 
-/* Resultado de colores sugeridos * /
+/* Resultado de colores sugeridos */
 .reverse-calculator .result-section {
     background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
     border: 2px solid #10b981;
@@ -700,7 +697,7 @@ button {
     color: #374151;
 }
 
-/* Calculadora inversa * /
+/* Calculadora inversa */
 .reverse-calculator {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border: 2px solid #f59e0b;
@@ -724,7 +721,7 @@ button {
     margin-bottom: 1rem;
 }
 
-/* Estilos específicos para input-group dentro de reverse-calculator * /
+/* Estilos específicos para input-group dentro de reverse-calculator */
 .reverse-calculator .input-group {
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid rgba(245, 158, 11, 0.4);
@@ -845,7 +842,7 @@ button {
     margin-top: 0.2rem;
 }
 
-/* Footer * /
+/* Footer */
 footer {
     background: rgba(0, 0, 0, 0.8);
     color: white;
@@ -897,7 +894,7 @@ footer p {
     font-size: 0.8rem;
 }
 
-/* Responsive * /
+/* Responsive */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
@@ -970,7 +967,7 @@ footer p {
     }
 }
 
-/* Colores para las bandas * /
+/* Colores para las bandas */
 .color-black { background-color: #000000; }
 .color-brown { background-color: #8B4513; }
 .color-red { background-color: #FF0000; }
@@ -984,4 +981,3 @@ footer p {
 .color-gold { background-color: #FFD700; }
 .color-silver { background-color: #C0C0C0; }
 .color-none { background-color: transparent; border: 2px dashed #ccc; }
-*/
